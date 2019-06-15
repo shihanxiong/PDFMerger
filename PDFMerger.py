@@ -1,12 +1,16 @@
 # Loading the pyPdf Library
 from PyPDF2 import PdfFileMerger
+import os
 
-pdfs = ['WPI_Transcript_1.pdf', 'WPI_Transcript_2.pdf', 'WPI_Transcript_3.pdf', 'WPI_Transcript_4.pdf']
+files = os.listdir('inputFiles')
+
+print files
 
 merger = PdfFileMerger()
 
-for pdf in pdfs:
-    merger.append(open(pdf, 'rb'))
+for file in files:
+    if file.endswith(".pdf"):
+        merger.append(open('inputFiles/' + file, 'rb'))
 
-with open('WPI_Transcript_Hanxiong_Shi.pdf', 'wb') as fout:
+with open('test_1_materials.pdf', 'wb') as fout:
     merger.write(fout)
